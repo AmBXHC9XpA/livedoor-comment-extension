@@ -40,13 +40,6 @@ const columns: GridColDef[] = [
       return (
         <ButtonGroup variant="contained">
           <Button
-            onClick={() => chrome.runtime.sendMessage({ id: params.row.id })}
-            size="small"
-            color="primary"
-          >
-            検索
-          </Button>
-          <Button
             onClick={() => removeIgnoreId(params.row.id)}
             size="small"
             color="error"
