@@ -1,0 +1,16 @@
+node_modules
+
+# Editors
+.idea
+.vscode
+
+# environment files
+.env
+
+# build files
+dist
+
+# MISC
+.DS_Store
+.eslintcache
+.rollup.cache

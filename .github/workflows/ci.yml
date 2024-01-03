@@ -1,0 +1,44 @@
+on: push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+name: CI
+
+permissions:
+  contents: write
+
+jobs:
+  eslint:
+    name: ESLInt
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+      - run: yarn
+      - run: yarn lint
+
+  release:
+    name: Release
+    needs: [eslint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+      - run: yarn
+      - run: yarn build
+      - run: mv dist livedoor-blog-comment-chrome-extension
+      - run: zip livedoor-blog-comment-chrome-extension -r livedoor-blog-comment-chrome-extension
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: livedoor-blog-comment-chrome-extension.zip
