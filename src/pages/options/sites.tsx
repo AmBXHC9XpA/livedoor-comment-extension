@@ -1,7 +1,4 @@
-import type {
-  GridColDef,
-  GridRenderCellParams,
-} from '@mui/x-data-grid';
+import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Paper from '@mui/material/Paper';
@@ -52,8 +49,7 @@ const columns: GridColDef[] = [
     field: 'cacheSize',
     headerName: 'キャッシュサイズ',
     flex: 0.4,
-    valueFormatter: (params: any) =>
-      humanFormat(params.value),
+    valueFormatter: (params: any) => humanFormat(params.value),
   },
   {
     field: 'isDisabled',
