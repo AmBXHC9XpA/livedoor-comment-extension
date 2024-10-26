@@ -35,13 +35,6 @@ export const deleteUrlConfig = async (origin: string): Promise<void> => {
   return _setStorage('urls', config);
 };
 
-export const getOrigins = async (): Promise<string[]> =>
-  Object.entries(
-    (await _getStorage('urls')) as Record<string, { isDisabled?: boolean }>,
-  )
-    .filter(([_, value]) => !value.isDisabled)
-    .map(([url]) => url);
-
 export const getCacheSize = async (origin: string): Promise<number> =>
   Object.values(
     await getUrlConfig('urls', {} as Record<string, number>, origin),
