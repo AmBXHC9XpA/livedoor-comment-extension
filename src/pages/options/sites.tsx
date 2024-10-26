@@ -1,7 +1,6 @@
 import type {
   GridColDef,
   GridRenderCellParams,
-  GridValueFormatterParams,
 } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -53,7 +52,7 @@ const columns: GridColDef[] = [
     field: 'cacheSize',
     headerName: 'キャッシュサイズ',
     flex: 0.4,
-    valueFormatter: (params: GridValueFormatterParams<number>) =>
+    valueFormatter: (params: any) =>
       humanFormat(params.value),
   },
   {
@@ -96,14 +95,14 @@ const parseStorage = async (
   storage: Record<string, { tag?: string; isDisabled?: boolean }> | undefined,
 ): Promise<SiteSetting[]> => {
   return Object.entries(storage ?? {}).reduce(
-    async (prev, [origin, { tag, isDisabled }]) => {
+    async (prev, [origin, s]) => {
       const acc = await prev;
       return acc.concat({
         id: origin,
         origin,
-        tag,
+        tag: s.tag,
         cacheSize: await getCacheSize(origin),
-        isDisabled: isDisabled ?? false,
+        isDisabled: s.isDisabled ?? false,
       });
     },
     Promise.resolve([] as SiteSetting[]),
