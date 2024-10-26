@@ -6,7 +6,7 @@ const manifest = defineManifest({
   manifest_version: 3,
   name: 'livedoor comment',
   description: 'livedoor comment',
-  version: '0.0.16',
+  version: '0.0.17',
   content_scripts: [
     {
       matches: [
