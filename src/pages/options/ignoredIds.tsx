@@ -23,10 +23,8 @@ const columns: GridColDef[] = [
     field: 'lastHit',
     headerName: '最終ヒット日時',
     flex: 0.5,
-    valueFormatter: (params: any) =>
-      params.value === undefined
-        ? ''
-        : dayjs(params.value).format('YYYY/MM/DD HH:mm:ss'),
+    valueFormatter: (value: any) =>
+      value === undefined ? '' : dayjs(value).format('YYYY/MM/DD HH:mm:ss'),
   },
   {
     field: '',

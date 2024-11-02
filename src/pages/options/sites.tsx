@@ -49,7 +49,7 @@ const columns: GridColDef[] = [
     field: 'cacheSize',
     headerName: 'キャッシュサイズ',
     flex: 0.4,
-    valueFormatter: (params: any) => humanFormat(params.value),
+    valueFormatter: (value: any) => humanFormat(value),
   },
   {
     field: 'isDisabled',
